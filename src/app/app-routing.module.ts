@@ -5,6 +5,9 @@ import {LoginComponent} from './auth/login/login.component';
 import {AuthGuard} from './auth/auth.guard';
 import {AperoComponent} from './main/main/apero/apero.component';
 import {AperoCreateComponent} from './main/main/apero/apero-create/apero-create.component';
+import {TapComponent} from './main/main/apero/tap/tap.component';
+import {AperoNextComponent} from './main/main/apero/apero-next/apero-next.component';
+import {AperoViewComponent} from './main/main/apero/apero-view/apero-view.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/main/apero', pathMatch: 'full'},
@@ -12,8 +15,10 @@ const routes: Routes = [
   {
     path: 'main', canActivate: [AuthGuard], component: MainComponent,
     children: [
+      {path: '', component: TapComponent},
       {path: 'apero', component: AperoComponent},
-      {path: 'apero-create', component: AperoCreateComponent}
+      {path: 'apero-create', component: AperoCreateComponent},
+      {path: 'apero-view', component: AperoViewComponent}
     ]
   },
 ];

@@ -1,0 +1,13 @@
+<div *ngIf="!noApero && !loading" class="cmp-container" (click)="onTap()">
+  <mat-icon class="cmp-icon fa-pulse">local_bar</mat-icon>
+  <span class="cmp-text">Tap for Apéro!</span>
+</div>
+<div *ngIf="!noApero && loading" class="cmp-container">
+  <mat-icon class="cmp-icon fa-spin">local_bar</mat-icon>
+  <span class="cmp-text">Searching for Apéro...</span>
+</div>
+<div *ngIf="noApero && !loading" class="cmp-container">
+  <mat-icon class="cmp-icon fa-pulse">mood_bad</mat-icon>
+  <span class="cmp-text">No Apéro scheduled!</span>
+  <button class="cmp-create-button" mat-raised-button color="primary" routerLink="/main/apero-create">Create Apéro</button>
+</div>

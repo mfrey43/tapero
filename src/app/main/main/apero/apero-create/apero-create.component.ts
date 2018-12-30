@@ -31,7 +31,11 @@ export class AperoCreateComponent implements OnInit {
       date: this.form.get('date').value.toISOString(),
     };
     this.db.collection<Apero>('aperos').add(apero).then(() => {
-      this.router.navigate(['main', 'apero']);
+      this.router.navigate(['main/apero']);
     });
+  }
+
+  abort() {
+    this.router.navigate(['main/apero']);
   }
 }

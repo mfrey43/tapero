@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore, DocumentChangeAction} from '@angular/fire/firestore';
 import {Apero} from './apero.model';
+import {AperoService} from './apero.service';
 
 @Component({
   selector: 'app-apero',
@@ -10,10 +11,10 @@ import {Apero} from './apero.model';
 })
 export class AperoComponent implements OnInit {
 
-  items: Observable<Apero[]>;
+  items: Observable<DocumentChangeAction<Apero>[]>;
 
-  constructor(db: AngularFirestore) {
-    this.items = db.collection<Apero>('aperos', ref => ref.orderBy('date', 'desc')).valueChanges();
+  constructor(angularFirestore: AngularFirestore, public aperoService: AperoService) {
+    this.items = angularFirestore.collection<Apero>('aperos', ref => ref.orderBy('date', 'desc')).snapshotChanges();
   }
 
   ngOnInit(): void {

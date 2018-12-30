@@ -1,0 +1,7 @@
+<div *ngIf="aperoService.selectedApero">
+  <h1>{{aperoService.selectedApero.data().title}}</h1>
+  <span>{{aperoService.selectedApero.data().date | date: 'fullDate'}}</span>
+  <div class="cmp-delete-button-box">
+    <button class="cmp-delete-button" mat-raised-button color="warn" (click)="remove(aperoService.selectedApero)">Delete Apéro</button>
+  </div>
+</div>

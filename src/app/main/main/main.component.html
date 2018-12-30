@@ -1,5 +1,10 @@
 <mat-sidenav-container class="example-container" fullscreen>
-  <mat-sidenav mode="side" [(opened)]="opened">Sidenav content</mat-sidenav>
+  <mat-sidenav mode="over" [(opened)]="opened">
+    <mat-action-list>
+      <button mat-list-item routerLink="/main" (click)="opened = false">TAP</button>
+      <button mat-list-item routerLink="/main/apero" (click)="opened = false">Apéros</button>
+    </mat-action-list>
+  </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button mat-icon-button (click)="opened = !opened">
@@ -7,6 +12,8 @@
       </button>
       <span>Tapero</span>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <div class="cmp-content-container">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,6 +1,6 @@
-<mat-card *ngFor="let item of items | async">
-  <mat-card-title>{{item.title}}</mat-card-title>
-  <mat-card-content>{{item.date | date: 'shortDate'}}</mat-card-content>
+<mat-card *ngFor="let item of items | async" (click)="aperoService.selectApero(item.payload.doc)">
+  <mat-card-title>{{item.payload.doc.data().title}}</mat-card-title>
+  <mat-card-content>{{item.payload.doc.data().date | date: 'shortDate'}}</mat-card-content>
 </mat-card>
 <button class="fab-bottom-right" mat-fab routerLink="/main/apero-create">
   <mat-icon>add</mat-icon>
