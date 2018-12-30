@@ -10,7 +10,7 @@ import {AperoNextComponent} from './main/main/apero/apero-next/apero-next.compon
 import {AperoViewComponent} from './main/main/apero/apero-view/apero-view.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/main/apero', pathMatch: 'full'},
+  {path: '', redirectTo: '/main', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {
     path: 'main', canActivate: [AuthGuard], component: MainComponent,
