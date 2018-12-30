@@ -14,6 +14,7 @@ import {AppMaterialModule} from './app-material.module';
 import {MAT_DATE_LOCALE} from '@angular/material';
 import localeDECH from '@angular/common/locales/de-CH';
 import {registerLocaleData} from '@angular/common';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 registerLocaleData(localeDECH);
 
@@ -32,6 +33,7 @@ registerLocaleData(localeDECH);
     MainModule,
     AuthModule,
     AppMaterialModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'de-CH'},
