@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore, DocumentSnapshot} from '@angular/fire/firestore';
+import {AngularFirestore, DocumentChangeAction, DocumentSnapshot} from '@angular/fire/firestore';
 import {Apero} from './apero.model';
 import {firestore} from 'firebase/app';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,19 @@ export class AperoService {
 
   public selectedApero: DocumentSnapshot<Apero> = null;
 
-  constructor(private angularFirestore: AngularFirestore, private router: Router) {
+  constructor(private angularFirestore: AngularFirestore, private router: Router, private store: Store<{}>) {
+    angularFirestore.collection<Apero>('aperos').stateChanges().subscribe((changes: DocumentChangeAction<Apero>[]) => {
+        changes.forEach(change => {
+          store.dispatch({
+            type: `[Apero] ${change.type}`,
+            payload: {
+              id: change.payload.doc.id,
+              ...change.payload.doc.data()
+            }
+          });
+        });
+      }
+    );
   }
 
   private static readonly getNextAperoQuery = ref => ref.where('date', '>', new Date().toISOString()).orderBy('date', 'asc').limit(1);
