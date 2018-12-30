@@ -1,0 +1,12 @@
+<mat-sidenav-container class="example-container" fullscreen>
+  <mat-sidenav mode="side" [(opened)]="opened">Sidenav content</mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="opened = !opened">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Tapero</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
